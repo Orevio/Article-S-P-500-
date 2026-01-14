@@ -865,8 +865,9 @@
     }
 
     /* --- DESKTOP RESPONSIVE STYLES --- */
-    /* Mobile/Default for Trading Hours Accordion (Side Spacing) */
-    details#hours {
+    /* Mobile/Default for Trading Hours & TOC Accordion (Side Spacing) */
+    details#hours,
+    details#toc {
       margin-left: var(--pad);
       margin-right: var(--pad);
       margin-top: 40px;
@@ -935,6 +936,8 @@
         border: none;
         display: block;
         padding: 0;
+        margin: 0;
+        /* Reset mobile margin */
         overflow: visible;
         /* Fix clipped text */
       }
