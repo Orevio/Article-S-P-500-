@@ -1,0 +1,1854 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>How to trade the S&P 500 — Premium Prototype</title>
+
+  <!-- 1. Typography Upgrade: Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* 4. Dark Mode Support via CSS Variables */
+    :root {
+      /* Palette: Rich & High Contrast */
+      --brand: #0066cc;
+      --brand-glow: rgba(0, 102, 204, 0.3);
+      --accent: #2563eb;
+      --text: #1a1a1a;
+      --text-muted: #555555;
+      /* Higher contrast */
+      --bg: #ffffff;
+      --card: #ffffff;
+      --tint: #f3f4f6;
+      --line: #e5e5e5;
+
+      --cta: #1a1a1a;
+      --ctaText: #ffffff;
+
+      --radius: 16px;
+      --radius-sm: 12px;
+      --pad: 24px;
+
+      /* Visual Depth */
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.04);
+      --glass: rgba(255, 255, 255, 0.85);
+
+      --topbar-h: 4px;
+    }
+
+    [data-theme="dark"] {
+      --brand: #4d9fff;
+      --brand-glow: rgba(77, 159, 255, 0.2);
+      --accent: #60a5fa;
+      --text: #f5f5f5;
+      --text-muted: #a3a3a3;
+      /* Higher contrast */
+      --bg: #0a0a0a;
+      --card: #141414;
+      --tint: #1f1f1f;
+      --line: #333;
+
+      --cta: #f5f5f5;
+      --ctaText: #0a0a0a;
+
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.3);
+      --glass: rgba(10, 10, 10, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    /* 3. Dynamic Visuals: Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Progress & Header */
+    .progress-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--topbar-h);
+      z-index: 1000;
+      background: transparent;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--cta);
+      /* or Accent */
+      border-radius: 0 4px 4px 0;
+      transition: width 0.1s linear;
+    }
+
+    .page {
+      max-width: 440px;
+      margin: 0 auto;
+      padding-bottom: 110px;
+      /* Space for sticky CTA */
+      position: relative;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.92);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin: 0 0 12px 0;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.6;
+      margin: 0 0 16px 0;
+      opacity: 0.95;
+    }
+
+    .muted {
+      color: var(--muted);
+      opacity: 1;
+      font-weight: 400;
+    }
+
+    .section {
+      padding: 32px var(--pad);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    /* Meta & Badges */
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .hero-space {
+      padding-top: 80px;
+    }
+
+    /* Breathable top */
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 99px;
+      background: var(--tint);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--line);
+    }
+
+    /* --- UTILITIES --- */
+    .bg-subtle {
+      background: var(--tint);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 24px 0;
+    }
+
+    .concept-card {
+      background: linear-gradient(135deg, var(--card), var(--tint));
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* Swipe hint for mobile */
+    .h-scroll {
+      position: relative;
+    }
+
+    .h-scroll::after {
+      content: '→';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg);
+      padding: 8px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      display: none;
+      /* JS can toggle, or use media query */
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .swipe-hint {
+        text-align: right;
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+        display: block;
+        font-weight: 500;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .swipe-hint {
+        display: none;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: 0.6;
+        transform: translateX(0);
+      }
+
+      50% {
+        opacity: 1;
+        transform: translateX(3px);
+      }
+
+      100% {
+        opacity: 0.6;
+        transform: translateX(0);
+      }
+    }
+
+    /* --- COMPONENT: BUTTONS --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 1;
+      height: 48px;
+      width: auto;
+      /* Allow auto width */
+    }
+
+    .btn-primary {
+      background: var(--text);
+      /* High contrast */
+      color: var(--bg);
+      border: 1px solid transparent;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      height: auto;
+      padding: 12px 16px;
+    }
+
+    .btn-ghost:hover {
+      color: var(--text);
+      background: var(--tint);
+    }
+
+    .btn-outline {
+      background: var(--card);
+      border: 1px solid var(--line);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--text);
+    }
+
+    /* --- ACCORDION SYSTEM (Compact Reference Tokens) --- */
+
+    /* Base Container */
+    details {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      transition: height 0.25s ease-out;
+    }
+
+    /* Summary Header */
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      /* Reduced vertical padding */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border-radius: 16px;
+      min-height: 44px;
+      transition: background-color 0.15s ease;
+      outline: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    @media (hover: hover) {
+      summary:hover {
+        background-color: #F9FAFB;
+      }
+    }
+
+    summary:focus-visible {
+      box-shadow: 0 0 0 2px rgba(12, 39, 128, 0.4);
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Header Typography */
+    .acc-header {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .acc-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .acc-hint {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.3;
+      display: block;
+    }
+
+    /* Chevron */
+    .chev-icon {
+      color: var(--text-muted);
+      transition: transform 0.2s ease-out;
+      transform-origin: center;
+      width: 16px;
+      /* 16px Token */
+      height: 16px;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+
+    /* OPEN STATE */
+    details[open] {
+      border-radius: 16px;
+    }
+
+    details[open] summary {
+      border-bottom: 1px solid var(--line);
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      background: #FFFFFF;
+    }
+
+    /* Hide hint when open to reduce noise */
+    details[open] .acc-hint {
+      display: none;
+    }
+
+    details[open] summary .chev-icon {
+      transform: rotate(180deg);
+    }
+
+    /* Content Area */
+    .acc-content {
+      padding: 20px;
+      /* meaningful padding */
+      background: #FFFFFF;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0 var(--pad) 24px;
+      margin: 0;
+    }
+
+    .toc-list li {
+      border-top: 1px solid var(--line);
+    }
+
+    .toc-list a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .toc-list a:hover {
+      color: var(--text);
+    }
+
+    .toc-list a.is-active {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--line);
+      transition: all 0.2s;
+    }
+
+    .toc-list a.is-active .dot {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.2);
+    }
+
+    /* Cards */
+    .card-box {
+      background: var(--tint);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .card-box li {
+      margin-bottom: 8px;
+    }
+
+    /* 2. Professional Iconography (Icon Rows) */
+    .icon-row {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      align-items: flex-start;
+    }
+
+    .icon-box {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      background: var(--tint);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
+
+    .icon-box svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2;
+    }
+
+    .ir-content .title {
+      font-weight: 700;
+      font-size: 17px;
+      margin: 0 0 4px 0;
+    }
+
+    .ir-content .desc {
+      font-size: 15px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Horizontal Scroll Snap */
+    .h-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 8px var(--pad) 24px;
+      margin: 0 calc(var(--pad) * -1);
+      /* Breakout */
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .h-scroll:after {
+      content: '';
+      flex: 0 0 8px;
+    }
+
+    /* right spacer */
+    .h-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .h-card {
+      scroll-snap-align: center;
+      flex: 0 0 260px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .h-card h4 {
+      margin: 0 0 6px 0;
+      font-size: 16px;
+    }
+
+    .h-card p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Stepper */
+    .step-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 8px;
+      background: var(--cta);
+      color: var(--ctaText);
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .step-txt {
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    strong {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Conversion Box */
+    .conversion {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .conversion h3 {
+      margin-bottom: 8px;
+    }
+
+    /* Pluses Checklist */
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .check-icon svg {
+      width: 12px;
+      height: 12px;
+      stroke: #fff;
+      stroke-width: 3;
+    }
+
+    /* Sticky CTA Glass */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--line);
+      padding: 12px;
+      z-index: 999;
+      box-shadow: var(--shadow-up);
+    }
+
+    .sticky-inner {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* Key Takeaways Table Style */
+    .takeaways .t-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .takeaways .t-row:last-child {
+      border-bottom: none;
+    }
+
+    .t-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .t-val {
+      font-size: 16px;
+    }
+
+    /* Utilities */
+    .anchor {
+      scroll-margin-top: 80px;
+    }
+
+    /* --- NEW PREMIUM FEATURES --- */
+
+    /* 1. Ambient Background */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+
+    [data-theme="dark"] .blob {
+      opacity: 0.15;
+    }
+
+    .blob-1 {
+      top: -10%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: var(--accent);
+    }
+
+    .blob-2 {
+      bottom: -10%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: #8b5cf6;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-30px, 50px) scale(1.1);
+      }
+    }
+
+    /* 2. Live Price Ticker */
+    .ticker-widget {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 99px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.2s;
+    }
+
+    .ticker-val {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ticker-change {
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .up {
+      color: #10b981;
+    }
+
+    .down {
+      color: #ef4444;
+    }
+
+    /* 3. Spotlight Card Effect */
+    .h-card,
+    .card-box,
+    .conversion {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .h-card:hover,
+    .card-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    /* The Glow Overlay */
+    .spotlight-overlay {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(250px circle at var(--x) var(--y), rgba(255, 255, 255, 0.15), transparent 100%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    [data-theme="dark"] .spotlight-overlay {
+      background: radial-gradient(250px circle at var(--x) var(--y), rgba(255, 255, 255, 0.06), transparent 100%);
+    }
+
+    .h-card:hover .spotlight-overlay,
+    .card-box:hover .spotlight-overlay,
+    .conversion:hover .spotlight-overlay {
+      opacity: 1;
+    }
+
+    /* --- DESKTOP RESPONSIVE STYLES --- */
+    @media (min-width: 1024px) {
+      .page {
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        column-gap: 80px;
+        align-items: start;
+        padding-top: 60px;
+      }
+
+      /* Full-span elements */
+      .ambient-bg {
+        grid-column: 1 / -1;
+      }
+
+      /* Hero: Wide & Centered */
+      #top.section {
+        grid-column: 1 / -1;
+        text-align: center;
+        width: 100%;
+        /* Ensure full width */
+        margin: 0 auto 40px;
+        border-bottom: none;
+        padding-top: 40px;
+      }
+
+      #top h1 {
+        font-size: 48px;
+        letter-spacing: -1px;
+        max-width: 800px;
+        /* Keep text readable */
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #top p {
+        font-size: 20px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #top .meta {
+        justify-content: center;
+      }
+
+      #top .btn {
+        width: auto;
+        min-width: 180px;
+        margin: 0 4px;
+      }
+
+      /* Sidebar TOC */
+      details#toc {
+        grid-column: 1;
+        grid-row: 2 / 20;
+        /* Span vertical space */
+        position: sticky;
+        top: 120px;
+        background: transparent;
+        border: none;
+        display: block;
+        padding: 0;
+        overflow: visible;
+        /* Fix clipped text */
+      }
+
+      details#toc summary {
+        display: none;
+      }
+
+      /* Desktop Header for TOC */
+      details#toc::before {
+        content: 'What you’ll learn';
+        display: block;
+        font-weight: 800;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+        margin-bottom: 24px;
+        padding-left: 1px;
+        /* Safety buffer */
+      }
+
+      details#toc[open] .chev-icon {
+        display: none;
+      }
+
+      .toc-list {
+        padding: 0;
+        position: relative;
+        border-left: 2px solid #E5E7EB;
+        /* Inactive Rail */
+      }
+
+      /* The Active Rail Segment */
+      #toc-rail-active {
+        position: absolute;
+        left: -2px;
+        width: 2px;
+        background: #0C2780;
+        /* Deep Blue */
+        transition: top 0.25s ease-out, height 0.25s ease-out;
+        border-radius: 2px;
+        z-index: 1;
+        /* Sit on top of inactive rail */
+        opacity: 0;
+        /* Hidden by default until JS triggers */
+      }
+
+      .toc-list li {
+        border: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
+
+      .toc-list a {
+        display: block;
+        padding: 8px 0 8px 24px;
+        /* Space from rail */
+        border-radius: 0;
+        font-size: 15px;
+        color: var(--text-muted);
+        font-weight: 400;
+        transition: color 0.15s ease;
+        position: relative;
+      }
+
+      .toc-list a:hover {
+        background: transparent;
+        color: var(--text);
+      }
+
+      .toc-list a.is-active {
+        background: transparent;
+        color: #0C2780;
+        /* Active Blue Text */
+        font-weight: 600;
+        border: none;
+      }
+
+      .toc-list .dot {
+        display: none;
+      }
+
+      /* Main Content Column */
+      /* Main Content Column */
+      .section:not(#top) {
+        grid-column: 2;
+        padding: 40px 0;
+        border-color: var(--line);
+      }
+
+      details#hours {
+        grid-column: 2;
+        margin-top: 40px;
+        /* Requested margin */
+        padding: 0;
+        border-color: var(--line);
+      }
+
+      /* Feature Strip - Mobile Override */
+      @media (max-width: 768px) {
+        .feature-strip {
+          grid-template-columns: 1fr !important;
+          gap: 32px !important;
+        }
+      }
+
+      /* Unified Icon Style: No Box */
+      .icon-box {
+        background: transparent;
+        width: auto;
+        height: auto;
+        display: block;
+        margin-bottom: 16px;
+        padding: 0;
+        border-radius: 0;
+      }
+
+      .icon-box svg {
+        width: 28px;
+        /* Slightly larger for section headers */
+        height: 28px;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        /* Stroke color handled by inline style url(#deepBlueGrad) */
+      }
+
+      /* Cards Grid */
+      .h-scroll {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+      }
+
+      .h-scroll:after {
+        display: none;
+      }
+
+      .h-card {
+        width: auto;
+        flex: none;
+        min-height: 160px;
+      }
+
+      /* Hide Mobile Sticky CTA */
+      .sticky-cta {
+        display: none;
+      }
+
+      /* Adjust Ticker Position */
+      /* Adjust Ticker Position */
+      .ticker-widget {
+        margin-bottom: 24px;
+        transform: scale(1.0);
+        /* Reset scale */
+      }
+
+      /* Font adjustments */
+      h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      p,
+      li {
+        font-size: 18px;
+        line-height: 1.7;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Progress -->
+  <div class="progress-wrap" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- Float Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+    <!-- Sun Icon (for dark mode) -->
+    <svg class="sun" style="display:none" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="5"></circle>
+      <path
+        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42">
+      </path>
+    </svg>
+    <!-- Moon Icon (for light mode) -->
+    <svg class="moon" viewBox="0 0 24 24">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <main class="page">
+
+    <!-- Ambient Background -->
+    <div class="ambient-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <!-- HERO -->
+    <section class="section hero-space reveal active" id="top">
+
+      <!-- Live Ticker -->
+      <div class="ticker-widget" id="tickerWidget">
+        <span style="font-size:16px;">🇺🇸</span>
+        <span>S&P 500</span>
+        <span class="ticker-val" id="tickerPrice">4,780.25</span>
+        <span class="ticker-change up" id="tickerChange">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+          0.45%
+        </span>
+      </div>
+
+      <!-- HERO: Title -> Intro -> CTA -> Image -->
+      <h1 style="margin-bottom: 16px;">How to trade the S&P 500</h1>
+
+      <p class="muted" style="font-size:20px; max-width:600px; margin: 0 auto 16px;">
+        Everything you need to know about the S&P 500 and how to trade it broadly with CFDs.
+      </p>
+
+      <div style="margin-bottom: 32px; display:flex; gap:12px; justify-content:center;">
+        <a class="btn btn-primary" href="#get-started">Try free demo</a>
+        <a class="btn btn-ghost" href="#get-started" style="font-weight: 500; opacity: 0.9;">Trade for real <span
+            style="margin-left:4px">→</span></a>
+      </div>
+
+      <div class="meta" style="margin-bottom: 40px; font-size: 14px; opacity: 0.7;">
+        <span>Plus500 Experts</span><span>•</span>
+        <span>Jan 2026</span><span>•</span>
+        <span>5 min read</span>
+      </div>
+
+      <!-- Hero Image -->
+      <div style="border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 16/9;">
+        <img src="hero_sp500_16_9.png" alt="S&P 500 Trading Growth"
+          style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+      </div>
+    </section>
+
+    <!-- TOC -->
+    <details id="toc" class="reveal">
+      <summary>
+        What you’ll learn
+        <svg class="chev-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <ul class="toc-list" id="tocList">
+        <li><a data-toc href="#what-is"><span>What is the S&P 500?</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#why-trade"><span>Why trade the S&P 500?</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#popular"><span>What makes it popular?</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#your-way"><span>Trade your way</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#first-trade"><span>First trade guide</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#hours"><span>Trading hours</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#pluses"><span>The Pluses</span>
+            <div class="dot"></div>
+          </a></li>
+        <li><a data-toc href="#takeaways"><span>Key takeaways</span>
+            <div class="dot"></div>
+          </a></li>
+      </ul>
+    </details>
+
+    <!-- WHAT IS -->
+    <section class="section anchor reveal" id="what-is">
+      <h2>What is the S&P 500?</h2>
+      <p>
+        The S&P 500 is an Index that tracks the performance of 500 of the largest U.S. companies. It covers about 80% of
+        the total market cap of U.S. equities and is often used to measure the performance of the entire American stock
+        market.
+      </p>
+      <p style="
+        font-size: 16px; 
+        font-weight: 500; 
+        color: var(--text-muted); 
+        margin-top: 12px; 
+        margin-bottom: 0; 
+        line-height: 1.4;
+      ">
+        Tracks 500 of the largest U.S. companies.
+      </p>
+    </section>
+
+    <!-- WHY TRADE -->
+    <!-- WHY TRADE -->
+    <section class="section anchor reveal" id="why-trade">
+      <h2 style="margin-bottom: 24px;">Why trade the S&P 500?</h2>
+
+      <!-- Concept Card: Subtle Elevation, Editorial Style -->
+      <div class="concept-card" style="
+        background: #ffffff;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+        border: none;
+        border-radius: 20px;
+        padding: 48px;
+        margin-top: 0;
+        position: relative;
+      ">
+        <!-- Defined Gradient for Icons -->
+        <svg width="0" height="0" style="position: absolute; visibility: hidden;">
+          <defs>
+            <linearGradient id="deepBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#1E4BFF;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#0C2780;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- Title & Icon -->
+        <h3 style="
+          display: flex; 
+          flex-direction: column;
+          align-items: flex-start; 
+          gap: 16px; 
+          margin-bottom: 24px; 
+          color: var(--text); 
+          font-size: 24px; 
+          font-weight: 800;
+        ">
+          <!-- Basket Icon -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 9h16l-1.5 12h-13L4 9z"></path>
+            <path d="M8 9V5a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v4"></path>
+            <line x1="12" y1="10" x2="12" y2="21" stroke-opacity="0.3"></line>
+          </svg>
+          The "Basket of Fruit" Concept
+        </h3>
+
+        <!-- Explanation -->
+        <p style="
+          margin-bottom: 48px; 
+          font-size: 19px; 
+          color: var(--text); 
+          opacity: 0.8;
+          line-height: 1.6;
+          max-width: 600px;
+        ">
+          Instead of buying one apple (a single stock), you get a <strong
+            style="color:var(--text); font-weight:700;">whole basket</strong> containing small pieces of 500
+          different fruits.
+        </p>
+
+        <!-- Benefits Grid: Minimal Deep Blue Icons -->
+        <div style="
+          display: grid; 
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+          gap: 40px;
+        ">
+          <!-- Block 1: Safety -->
+          <div>
+            <div style="margin-bottom:16px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Safety</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              If one fruit goes bad, the rest of the basket can stay fresh.
+            </p>
+          </div>
+
+          <!-- Block 2: Growth -->
+          <div>
+            <div style="margin-bottom:16px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            </div>
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Growth</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              If the whole farm has a great season, your basket increases in value.
+            </p>
+          </div>
+
+          <!-- Block 3: Ease -->
+          <div>
+            <div style="margin-bottom:16px;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                </path>
+              </svg>
+            </div>
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Ease</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              You get instant exposure across all major market sectors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- POPULAR -->
+
+    <section class="section anchor reveal" id="popular" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="margin-bottom: 32px;">What makes it popular?</h2>
+
+      <div class="feature-strip" style="
+        display: grid; 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 40px; 
+        align-items: start;
+      ">
+
+        <!-- Diversity -->
+        <div class="feature-item">
+          <!-- Icon -->
+          <div class="icon-box" style="margin-bottom: 16px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 17L12 22L22 17" />
+              <path d="M2 12L12 17L22 12" />
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+            </svg>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Diversity</h4>
+          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+            Broad exposure reduces single-stock risk.
+          </p>
+        </div>
+
+        <!-- Security -->
+        <div class="feature-item">
+          <!-- Icon -->
+          <div class="icon-box" style="margin-bottom: 16px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Security</h4>
+          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+            Reviewed and updated by a standard committee.
+          </p>
+        </div>
+
+        <!-- Performance -->
+        <div class="feature-item">
+          <!-- Icon -->
+          <div class="icon-box" style="margin-bottom: 16px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M6 20L6 16M12 20L12 10M18 20L18 4" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
+          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Historic performance</h4>
+          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+            Long-term average returns around ~10% per year.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TRADE YOUR WAY -->
+    <!-- TRADE YOUR WAY -->
+    <section class="section anchor reveal" id="your-way">
+      <h2>Trade your way</h2>
+      <p class="muted">Choose the instrument that matches your goals.</p>
+
+      <!-- Swipe Affordance -->
+      <div class="swipe-hint">Swipe to see more options &rarr;</div>
+
+      <div class="h-scroll">
+        <div class="h-card">
+          <div class="spotlight-overlay"></div>
+          <h4>Index CFDs</h4>
+          <p class="muted">Trade the daily price movements of the S&P 500 without owning assets.</p>
+        </div>
+        <div class="h-card">
+          <div class="spotlight-overlay"></div>
+          <h4>Options CFDs</h4>
+          <p class="muted">Speculate on reaching a certain price by a certain date (Advanced).</p>
+        </div>
+        <div class="h-card">
+          <div class="spotlight-overlay"></div>
+          <h4>ETF CFDs</h4>
+          <p class="muted">Trade CFDs on popular funds like SPY that track the Index directly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIRST TRADE -->
+    <section class="section anchor reveal" id="first-trade">
+      <h2>How to open your first trade</h2>
+
+      <div class="step-container" style="margin-top: 32px;">
+
+        <!-- Step 1 -->
+        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+          <div class="step-num" style="
+            background: var(--tint); 
+            color: var(--text-muted); 
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 500; 
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+          ">1</div>
+          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Type <strong>S&P 500</strong> into the
+            search
+            bar.</div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-row" style="margin-bottom: 24px; align-items: start;">
+          <div class="step-num" style="
+            background: var(--tint); 
+            color: var(--text-muted); 
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 500; 
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+          ">2</div>
+          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Analyse charts to understand market
+            sentiment.</div>
+        </div>
+
+        <!-- Step 3: Editorial Emphasis via Typography & Spacing -->
+        <div class="step-row" style="margin-bottom: 24px; align-items: start;">
+          <div class="step-num" style="
+            background: var(--tint); 
+            color: #374151; /* Slightly darker */
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 600; 
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+          ">3</div>
+          <div class="step-txt" style="font-size: 18px; line-height: 1.6; color: var(--text);">Select
+            <strong>Buy</strong> or <strong>Sell</strong>.
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+          <div class="step-num" style="
+            background: var(--tint); 
+            color: var(--text-muted); 
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 500; 
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+          ">4</div>
+          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Set <strong>Stop Loss</strong> to manage
+            risk.</div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+          <div class="step-num" style="
+            background: var(--tint); 
+            color: var(--text-muted); 
+            width: 26px; 
+            height: 26px; 
+            border-radius: 50%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 500; 
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-top: 2px;
+          ">5</div>
+          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Visualise your trade size and confirm.
+          </div>
+        </div>
+      </div>
+
+      <!-- Anchor CTA -->
+      <div style="margin-top: 24px; text-align: left; padding-left: 52px;">
+        <a href="#top" style="
+          color: var(--text-muted); 
+          text-decoration: none; 
+          font-weight: 500; 
+          font-size: 15px; 
+          border-bottom: 1px solid var(--line); 
+          padding-bottom: 2px;
+        ">Practise on demo &rarr;</a>
+      </div>
+    </section>
+
+    <!-- GET STARTED -->
+    <!-- GET STARTED -->
+    <section class="section anchor reveal" id="get-started">
+      <div class="conversion" style="text-align:center; padding: 40px 24px;">
+        <h3 style="
+          font-size: 32px; 
+          font-weight: 800; 
+          margin-bottom: 16px; 
+          letter-spacing: -0.02em; 
+          color: var(--text);
+        ">Begin your journey</h3>
+
+        <p class="muted" style="
+          margin-bottom: 32px; 
+          font-size: 16px; 
+          line-height: 1.5; 
+          color: var(--text-muted); 
+          max-width: 400px; 
+          margin-left: auto; 
+          margin-right: auto;
+        ">Join millions of users worldwide trading with confidence.</p>
+
+        <!-- Simplified Actions -->
+        <div>
+          <a class="btn btn-primary" href="#top" style="width:100%; max-width:280px; font-weight: 600;">Create
+            Account</a>
+        </div>
+        <div style="margin-top: 16px;">
+          <a href="#top" style="
+            color: var(--text-muted); 
+            font-size: 13px; 
+            text-decoration: none; 
+            opacity: 0.8;
+            font-weight: 500;
+          ">Continue as Guest</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOURS: Compact Reference Accordion -->
+    <details id="hours" class="reveal">
+      <summary>
+        <div class="acc-header">
+          <span class="acc-title">Trading hours</span>
+          <span class="acc-hint">Sun night &rarr; Fri night</span>
+        </div>
+        <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </summary>
+      <div class="acc-content">
+        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+          <span style="font-weight:500; color:var(--text); font-size:14px;">Availability</span>
+          <span style="color:var(--text-muted); text-align:right; font-size:14px;">Sunday night &rarr; Friday
+            night</span>
+        </div>
+        <div style="display:flex; justify-content:space-between;">
+          <span style="font-weight:500; color:var(--text); font-size:14px;">Holidays</span>
+          <span style="color:var(--text-muted); text-align:right; font-size:14px;">Hours may vary. Check live
+            schedule.</span>
+        </div>
+      </div>
+    </details>
+
+    <!-- PLUSES -->
+    <section class="section anchor reveal" id="pluses">
+      <h2>The Pluses with us</h2>
+
+      <div class="check-row">
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
+            linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg></div>
+        <span>Fast execution</span>
+      </div>
+      <div class="check-row">
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
+            linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg></div>
+        <span>Tight spreads</span>
+      </div>
+      <div class="check-row">
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
+            linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg></div>
+        <span>Advanced tools</span>
+      </div>
+      <div class="check-row">
+        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
+            linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg></div>
+        <span>Secure withdrawals</span>
+      </div>
+    </section>
+
+    <!-- TAKEAWAYS -->
+    <!-- TAKEAWAYS -->
+    <section class="section anchor reveal" id="takeaways">
+      <h2>Key takeaways</h2>
+      <div class="card-box takeaways" style="background:var(--card); border:1px solid var(--line);">
+        <div class="t-row">
+          <span class="t-label" style="font-weight:700;">What</span>
+          <span class="t-val">Tracks top 500 U.S. companies.</span>
+        </div>
+        <div class="t-row">
+          <span class="t-label" style="font-weight:700;">Why</span>
+          <span class="t-val">Broad exposure spreads risk.</span>
+        </div>
+        <div class="t-row">
+          <span class="t-label" style="font-weight:700;">Returns</span>
+          <span class="t-val">Historically ~10% / year avg.</span>
+        </div>
+        <div class="t-row">
+          <span class="t-label" style="font-weight:700;">Method</span>
+          <span class="t-val">Index, Options, or ETFs.</span>
+        </div>
+      </div>
+    </section>
+
+    <div style="height:40px;"></div>
+
+  </main>
+
+  <!-- Sticky CTA -->
+  <div class="sticky-cta">
+    <div class="sticky-inner">
+      <a class="btn btn-primary" href="#get-started">Try free demo</a>
+    </div>
+  </div>
+
+  <script>
+    // 1. Dark Mode Toggle
+    const toggle = document.getElementById('themeToggle');
+    const sun = toggle.querySelector('.sun');
+    const moon = toggle.querySelector('.moon');
+    const root = document.documentElement;
+
+    const setMode = (isDark) => {
+      if (isDark) {
+        root.setAttribute('data-theme', 'dark');
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        root.removeAttribute('data-theme');
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+      }
+    };
+
+    // Check system preference
+    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setMode(sysDark);
+
+    toggle.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      setMode(!isDark);
+    });
+
+    // 2. Scroll Progress
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const sc = document.documentElement.scrollTop || document.body.scrollTop;
+      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const p = h > 0 ? (sc / h) * 100 : 0;
+      bar.style.width = p + '%';
+    }, { passive: true });
+
+    // 3. Reveal Animations (IntersectionObserver)
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('active');
+          // Optional: stop observing once revealed
+          // obs.unobserve(e.target); 
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(r => obs.observe(r));
+
+    // 4. TOC Scroll Spy with Vertical Rail
+    const tocLinks = document.querySelectorAll('a[data-toc]');
+    const targets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href')));
+    const railMarker = document.getElementById('toc-rail-active');
+    const tocList = document.getElementById('tocList');
+
+    // Add Rail Marker to DOM if missing
+    if (!railMarker && tocList) {
+      const marker = document.createElement('div');
+      marker.id = 'toc-rail-active';
+      tocList.appendChild(marker);
+    }
+    const activeRail = document.getElementById('toc-rail-active');
+
+    const updateRail = (link) => {
+      if (!activeRail || window.innerWidth < 1024) return;
+
+      const listRect = tocList.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+
+      const top = linkRect.top - listRect.top;
+      const height = linkRect.height;
+
+      activeRail.style.opacity = '1';
+      activeRail.style.top = top + 'px';
+      activeRail.style.height = height + 'px';
+    };
+
+    const spy = new IntersectionObserver((entries) => {
+      // Logic: Find the highest intersecting element
+      const visible = entries.filter(e => e.isIntersecting);
+      if (!visible.length) return;
+
+      visible.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+      const id = visible[0].target.id;
+
+      let activeLink = null;
+      tocLinks.forEach(l => {
+        const isActive = l.getAttribute('href') === '#' + id;
+        l.classList.toggle('is-active', isActive);
+        if (isActive) activeLink = l;
+      });
+
+      if (activeLink) updateRail(activeLink);
+
+    }, { rootMargin: "-20% 0px -60% 0px" });
+
+    targets.forEach(t => {
+      if (t) spy.observe(t);
+    });
+
+    // Handle Desktop/Mobile Sidebar Logic
+    const tocEl = document.getElementById('toc');
+    const checkDesktop = () => {
+      if (window.innerWidth >= 1024) {
+        if (!tocEl.hasAttribute('open')) tocEl.setAttribute('open', '');
+      }
+    };
+    window.addEventListener('resize', checkDesktop);
+    checkDesktop(); // Run on load
+
+    // Close TOC on mobile click ONLY
+    tocLinks.forEach(l => l.addEventListener('click', () => {
+      if (window.innerWidth < 1024) {
+        tocEl.removeAttribute('open');
+      }
+    }));
+
+    // 5. Live Ticker Simulation
+    const priceEl = document.getElementById('tickerPrice');
+    const changeEl = document.getElementById('tickerChange');
+    let basePrice = 4780.25;
+
+    setInterval(() => {
+      // Simulate small random moves
+      const delta = (Math.random() - 0.45) * 1.5;
+      basePrice += delta;
+
+      priceEl.textContent = basePrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      // Update color based on move
+      if (delta > 0) {
+        changeEl.className = 'ticker-change up';
+        changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg> 0.4%`;
+      } else {
+        changeEl.className = 'ticker-change down';
+        changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg> 0.2%`;
+      }
+    }, 2500);
+
+    // 6. Spotlight Effect
+    const cards = document.querySelectorAll('.h-card, .card-box, .conversion');
+    cards.forEach(card => {
+      // Add overlay if missing (for non-hardcoded cards)
+      if (!card.querySelector('.spotlight-overlay')) {
+        const overlay = document.createElement('div');
+        overlay.classList.add('spotlight-overlay');
+        card.appendChild(overlay);
+      }
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', x + 'px');
+        card.style.setProperty('--y', y + 'px');
+      });
+    });
+  </script>
+</body>
+
+</html>
