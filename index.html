@@ -665,11 +665,18 @@
     }
 
     /* Pluses Checklist */
+    .pluses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
     .check-row {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 0;
+      padding: 0;
       color: var(--text);
       font-weight: 500;
     }
@@ -1720,33 +1727,47 @@
     <section class="section anchor reveal" id="pluses">
       <h2>The Pluses with us</h2>
 
-      <div class="check-row">
-        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
-            linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg></div>
-        <span>Fast execution</span>
-      </div>
-      <div class="check-row">
-        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
-            linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg></div>
-        <span>Tight spreads</span>
-      </div>
-      <div class="check-row">
-        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
-            linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg></div>
-        <span>Advanced tools</span>
-      </div>
-      <div class="check-row">
-        <div class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" linecap="round"
-            linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg></div>
-        <span>Secure withdrawals</span>
+      <div class="pluses-grid">
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+          <span>Fast execution</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+          <span>Tight spreads</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+          <span>Advanced tools</span>
+        </div>
+        <div class="check-row">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+          <span>Secure withdrawals</span>
+        </div>
       </div>
     </section>
 
