@@ -367,7 +367,7 @@
 
     /* Base Container */
     details {
-      background: #FFFFFF;
+      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
       margin-bottom: 24px;
@@ -397,7 +397,7 @@
 
     @media (hover: hover) {
       summary:hover {
-        background-color: #F9FAFB;
+        background-color: var(--tint);
       }
     }
 
@@ -450,7 +450,7 @@
       border-bottom: 1px solid var(--line);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
-      background: #FFFFFF;
+      background: var(--card);
     }
 
     /* Hide hint when open to reduce noise */
@@ -466,7 +466,7 @@
     .acc-content {
       padding: 20px;
       /* meaningful padding */
-      background: #FFFFFF;
+      background: var(--card);
       font-size: 14px;
       color: var(--text-muted);
     }
@@ -1377,9 +1377,9 @@
 
       <!-- Concept Card: Subtle Elevation, Editorial Style -->
       <div class="concept-card" style="
-        background: #ffffff;
+        background: var(--card);
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
-        border: none;
+        border: 1px solid var(--line);
         border-radius: 20px;
         padding: 48px;
         margin-top: 0;
