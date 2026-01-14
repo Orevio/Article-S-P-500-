@@ -311,34 +311,34 @@
     }
 
     /* --- COMPONENT: BUTTONS --- */
+    /* --- COMPONENT: BUTTONS --- */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
-      font-weight: 700;
-      border-radius: 12px;
-      transition: all 0.2s ease;
+      padding: 12px 32px;
+      font-weight: 600;
+      border-radius: 99px;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       cursor: pointer;
       text-decoration: none;
       font-size: 16px;
       line-height: 1;
-      height: 48px;
+      height: 54px;
       width: auto;
-      /* Allow auto width */
+      font-family: 'IBM Plex Sans', sans-serif;
     }
 
     .btn-primary {
-      background: var(--text);
-      /* High contrast */
-      color: var(--bg);
-      border: 1px solid transparent;
-      box-shadow: var(--shadow-soft);
+      background: linear-gradient(180deg, #3B82F6 0%, #2563EB 100%);
+      color: #ffffff;
+      border: 2px solid #ffffff;
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.6);
     }
 
     .btn-ghost {
