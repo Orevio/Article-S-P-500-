@@ -9,7 +9,9 @@
   <!-- 1. Typography Upgrade: Inter Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
     /* 4. Dark Mode Support via CSS Variables */
@@ -153,9 +155,16 @@
     }
 
     /* Typography */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
     h1 {
       font-size: 32px;
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.1;
       margin: 0 0 16px 0;
       letter-spacing: -0.02em;
@@ -163,7 +172,7 @@
 
     h2 {
       font-size: 24px;
-      font-weight: 700;
+      font-weight: 600;
       line-height: 1.25;
       margin: 0 0 12px 0;
       letter-spacing: -0.01em;
@@ -1136,10 +1145,22 @@
 
     .feature-item {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      /* Horizontal layout */
       align-items: flex-start;
-      /* Ensure left align by default */
       text-align: left;
+      gap: 16px;
+      /* Space between icon and text */
+    }
+
+    .feature-icon-col {
+      flex: 0 0 auto;
+      /* Prevent icon shrinking */
+    }
+
+    .feature-text-col {
+      display: flex;
+      flex-direction: column;
     }
 
     /* Mobile Overrides (Strict Enforcement) */
@@ -1422,49 +1443,58 @@
 
         <!-- Diversity -->
         <div class="feature-item">
-          <!-- Icon -->
-          <div class="icon-box" style="margin-bottom: 16px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 17L12 22L22 17" />
-              <path d="M2 12L12 17L22 12" />
-              <path d="M12 2L2 7L12 12L22 7L12 2Z" />
-            </svg>
+          <div class="feature-icon-col">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 17L12 22L22 17" />
+                <path d="M2 12L12 17L22 12" />
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+              </svg>
+            </div>
           </div>
-          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Diversity</h4>
-          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-            Broad exposure reduces single-stock risk.
-          </p>
+          <div class="feature-text-col">
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Diversity</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              Broad exposure reduces single-stock risk.
+            </p>
+          </div>
         </div>
 
         <!-- Security -->
         <div class="feature-item">
-          <!-- Icon -->
-          <div class="icon-box" style="margin-bottom: 16px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
+          <div class="feature-icon-col">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
           </div>
-          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Security</h4>
-          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-            Reviewed and updated by a standard committee.
-          </p>
+          <div class="feature-text-col">
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Security</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              Reviewed and updated by a standard committee.
+            </p>
+          </div>
         </div>
 
         <!-- Performance -->
         <div class="feature-item">
-          <!-- Icon -->
-          <div class="icon-box" style="margin-bottom: 16px;">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M6 20L6 16M12 20L12 10M18 20L18 4" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
+          <div class="feature-icon-col">
+            <div class="icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M6 20L6 16M12 20L12 10M18 20L18 4" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
           </div>
-          <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Historic performance</h4>
-          <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-            Long-term average returns around ~10% per year.
-          </p>
+          <div class="feature-text-col">
+            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Historic performance</h4>
+            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+              Long-term average returns around ~10% per year.
+            </p>
+          </div>
         </div>
 
       </div>
