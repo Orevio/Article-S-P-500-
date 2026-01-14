@@ -1270,95 +1270,101 @@
       <div class="blob blob-2"></div>
     </div>
 
-    <!-- HERO -->
-    <section class="section hero-space reveal active" id="top">
+    <!-- HERO (Full Screen Width) -->
+    <section class="section hero-space reveal active" id="top" style="max-width: none; width: 100%;">
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 var(--pad);"> <!-- Text Container -->
 
-      <!-- Live Ticker -->
-      <div class="ticker-widget" id="tickerWidget">
-        <span style="font-size:16px;">🇺🇸</span>
-        <span>S&P 500</span>
-        <span class="ticker-val" id="tickerPrice">4,780.25</span>
-        <span class="ticker-change up" id="tickerChange">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="18 15 12 9 6 15"></polyline>
-          </svg>
-          0.45%
-        </span>
+        <!-- Live Ticker -->
+        <div class="ticker-widget" id="tickerWidget">
+          <span style="font-size:16px;">🇺🇸</span>
+          <span>S&P 500</span>
+          <span class="ticker-val" id="tickerPrice">4,780.25</span>
+          <span class="ticker-change up" id="tickerChange">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+            0.45%
+          </span>
+        </div>
+
+        <!-- HERO: Title -> Intro -> CTA -> Image -->
+        <h1 style="margin-bottom: 24px;">How to trade the S&P 500</h1>
+
+        <p class="muted" style="font-size:20px; max-width:640px; margin: 0 auto 24px;">
+          Everything you need to know about the S&P 500 and how to trade it broadly with CFDs.
+        </p>
+
+        <div style="margin-bottom: 40px; display:flex; gap:12px; justify-content:center;">
+          <a class="btn btn-primary" href="#get-started">Try free demo</a>
+          <a class="btn btn-ghost" href="#get-started" style="font-weight: 500; opacity: 0.9;">Trade for real <span
+              style="margin-left:4px">→</span></a>
+        </div>
+
+        <div class="meta" style="margin-bottom: 48px; font-size: 14px; opacity: 0.7;">
+          <span>Plus500 Experts</span><span>•</span>
+          <span>Jan 2026</span><span>•</span>
+          <span>5 min read</span>
+        </div>
       </div>
 
-      <!-- HERO: Title -> Intro -> CTA -> Image -->
-      <h1 style="margin-bottom: 16px;">How to trade the S&P 500</h1>
-
-      <p class="muted" style="font-size:20px; max-width:600px; margin: 0 auto 16px;">
-        Everything you need to know about the S&P 500 and how to trade it broadly with CFDs.
-      </p>
-
-      <div style="margin-bottom: 32px; display:flex; gap:12px; justify-content:center;">
-        <a class="btn btn-primary" href="#get-started">Try free demo</a>
-        <a class="btn btn-ghost" href="#get-started" style="font-weight: 500; opacity: 0.9;">Trade for real <span
-            style="margin-left:4px">→</span></a>
-      </div>
-
-      <div class="meta" style="margin-bottom: 40px; font-size: 14px; opacity: 0.7;">
-        <span>Plus500 Experts</span><span>•</span>
-        <span>Jan 2026</span><span>•</span>
-        <span>5 min read</span>
-      </div>
-
-      <!-- Hero Image -->
-      <div style="border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); aspect-ratio: 16/9;">
+      <!-- Hero Image (Full Width) -->
+      <div style="width: 100%; aspect-ratio: 16/9; overflow: hidden; max-height: 80vh;">
         <img src="hero_new.jpg" alt="S&P 500 Trading Growth"
           style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
       </div>
     </section>
 
-    <!-- TOC -->
-    <details id="toc" class="reveal">
-      <summary>
-        What you’ll learn
-        <svg class="chev-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </summary>
-      <ul class="toc-list" id="tocList">
-        <li><a data-toc href="#what-is"><span>What is the S&P 500?</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#why-trade"><span>Why trade the S&P 500?</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#popular"><span>What makes it popular?</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#your-way"><span>Trade your way</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#first-trade"><span>First trade guide</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#hours"><span>Trading hours</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#pluses"><span>The Pluses</span>
-            <div class="dot"></div>
-          </a></li>
-        <li><a data-toc href="#takeaways"><span>Key takeaways</span>
-            <div class="dot"></div>
-          </a></li>
-      </ul>
-    </details>
+    <main class="page">
 
-    <!-- WHAT IS -->
-    <section class="section anchor reveal" id="what-is">
-      <h2>What is the S&P 500?</h2>
-      <p>
-        The S&P 500 is an Index that tracks the performance of 500 of the largest U.S. companies. It covers about 80% of
-        the total market cap of U.S. equities and is often used to measure the performance of the entire American stock
-        market.
-      </p>
-      <p style="
+      <!-- TOC -->
+      <details id="toc" class="reveal">
+        <summary>
+          What you’ll learn
+          <svg class="chev-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
+        <ul class="toc-list" id="tocList">
+          <li><a data-toc href="#what-is"><span>What is the S&P 500?</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#why-trade"><span>Why trade the S&P 500?</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#popular"><span>What makes it popular?</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#your-way"><span>Trade your way</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#first-trade"><span>First trade guide</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#hours"><span>Trading hours</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#pluses"><span>The Pluses</span>
+              <div class="dot"></div>
+            </a></li>
+          <li><a data-toc href="#takeaways"><span>Key takeaways</span>
+              <div class="dot"></div>
+            </a></li>
+        </ul>
+      </details>
+
+      <!-- WHAT IS -->
+      <section class="section anchor reveal" id="what-is">
+        <h2>What is the S&P 500?</h2>
+        <p>
+          The S&P 500 is an Index that tracks the performance of 500 of the largest U.S. companies. It covers about 80%
+          of
+          the total market cap of U.S. equities and is often used to measure the performance of the entire American
+          stock
+          market.
+        </p>
+        <p style="
         font-size: 16px; 
         font-weight: 500; 
         color: var(--text-muted); 
@@ -1366,17 +1372,17 @@
         margin-bottom: 0; 
         line-height: 1.4;
       ">
-        Tracks 500 of the largest U.S. companies.
-      </p>
-    </section>
+          Tracks 500 of the largest U.S. companies.
+        </p>
+      </section>
 
-    <!-- WHY TRADE -->
-    <!-- WHY TRADE -->
-    <section class="section anchor reveal" id="why-trade">
-      <h2 style="margin-bottom: 24px;">Why trade the S&P 500?</h2>
+      <!-- WHY TRADE -->
+      <!-- WHY TRADE -->
+      <section class="section anchor reveal" id="why-trade">
+        <h2 style="margin-bottom: 24px;">Why trade the S&P 500?</h2>
 
-      <!-- Concept Card: Subtle Elevation, Editorial Style -->
-      <div class="concept-card" style="
+        <!-- Concept Card: Subtle Elevation, Editorial Style -->
+        <div class="concept-card" style="
         background: #ffffff;
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
         border: none;
@@ -1385,18 +1391,18 @@
         margin-top: 0;
         position: relative;
       ">
-        <!-- Defined Gradient for Icons -->
-        <svg width="0" height="0" style="position: absolute; visibility: hidden;">
-          <defs>
-            <linearGradient id="deepBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#1E4BFF;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#0C2780;stop-opacity:1" />
-            </linearGradient>
-          </defs>
-        </svg>
+          <!-- Defined Gradient for Icons -->
+          <svg width="0" height="0" style="position: absolute; visibility: hidden;">
+            <defs>
+              <linearGradient id="deepBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#1E4BFF;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#0C2780;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
 
-        <!-- Title & Icon -->
-        <h3 style="
+          <!-- Title & Icon -->
+          <h3 style="
           display: flex; 
           flex-direction: column;
           align-items: flex-start; 
@@ -1406,18 +1412,18 @@
           font-size: 24px; 
           font-weight: 800;
         ">
-          <!-- Basket Icon -->
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 9h16l-1.5 12h-13L4 9z"></path>
-            <path d="M8 9V5a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v4"></path>
-            <line x1="12" y1="10" x2="12" y2="21" stroke-opacity="0.3"></line>
-          </svg>
-          The "Basket of Fruit" Concept
-        </h3>
+            <!-- Basket Icon -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 9h16l-1.5 12h-13L4 9z"></path>
+              <path d="M8 9V5a4 4 0 0 1 4-4h0a4 4 0 0 1 4 4v4"></path>
+              <line x1="12" y1="10" x2="12" y2="21" stroke-opacity="0.3"></line>
+            </svg>
+            The "Basket of Fruit" Concept
+          </h3>
 
-        <!-- Explanation -->
-        <p style="
+          <!-- Explanation -->
+          <p style="
           margin-bottom: 48px; 
           font-size: 19px; 
           color: var(--text); 
@@ -1425,168 +1431,168 @@
           line-height: 1.6;
           max-width: 600px;
         ">
-          Instead of buying one apple (a single stock), you get a <strong
-            style="color:var(--text); font-weight:700;">whole basket</strong> containing small pieces of 500
-          different fruits.
-        </p>
+            Instead of buying one apple (a single stock), you get a <strong
+              style="color:var(--text); font-weight:700;">whole basket</strong> containing small pieces of 500
+            different fruits.
+          </p>
 
-        <!-- Benefits Grid: Minimal Deep Blue Icons -->
-        <div style="
+          <!-- Benefits Grid: Minimal Deep Blue Icons -->
+          <div style="
           display: grid; 
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
           gap: 40px;
         ">
-          <!-- Block 1: Safety -->
-          <div>
-            <div style="margin-bottom:16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
+            <!-- Block 1: Safety -->
+            <div>
+              <div style="margin-bottom:16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Safety</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                If one fruit goes bad, the rest of the basket can stay fresh.
+              </p>
             </div>
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Safety</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              If one fruit goes bad, the rest of the basket can stay fresh.
-            </p>
-          </div>
 
-          <!-- Block 2: Growth -->
-          <div>
-            <div style="margin-bottom:16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
+            <!-- Block 2: Growth -->
+            <div>
+              <div style="margin-bottom:16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                  <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Growth</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                If the whole farm has a great season, your basket increases in value.
+              </p>
             </div>
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Growth</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              If the whole farm has a great season, your basket increases in value.
-            </p>
-          </div>
 
-          <!-- Block 3: Ease -->
-          <div>
-            <div style="margin-bottom:16px;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                </path>
-              </svg>
-            </div>
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Ease</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              You get instant exposure across all major market sectors.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- POPULAR -->
-
-    <section class="section anchor reveal" id="popular">
-      <h2>What makes it popular?</h2>
-
-      <div class="feature-strip">
-
-        <!-- Diversity -->
-        <div class="feature-item">
-          <div class="feature-icon-col">
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 17L12 22L22 17" />
-                <path d="M2 12L12 17L22 12" />
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" />
-              </svg>
+            <!-- Block 3: Ease -->
+            <div>
+              <div style="margin-bottom:16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                  </path>
+                </svg>
+              </div>
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Ease</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                You get instant exposure across all major market sectors.
+              </p>
             </div>
           </div>
-          <div class="feature-text-col">
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Diversity</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              Broad exposure reduces single-stock risk.
-            </p>
-          </div>
         </div>
+      </section>
+      <!-- POPULAR -->
 
-        <!-- Security -->
-        <div class="feature-item">
-          <div class="feature-icon-col">
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
+      <section class="section anchor reveal" id="popular">
+        <h2>What makes it popular?</h2>
+
+        <div class="feature-strip">
+
+          <!-- Diversity -->
+          <div class="feature-item">
+            <div class="feature-icon-col">
+              <div class="icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 17L12 22L22 17" />
+                  <path d="M2 12L12 17L22 12" />
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                </svg>
+              </div>
+            </div>
+            <div class="feature-text-col">
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Diversity</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                Broad exposure reduces single-stock risk.
+              </p>
             </div>
           </div>
-          <div class="feature-text-col">
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Security</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              Reviewed and updated by a standard committee.
-            </p>
-          </div>
-        </div>
 
-        <!-- Performance -->
-        <div class="feature-item">
-          <div class="feature-icon-col">
-            <div class="icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M6 20L6 16M12 20L12 10M18 20L18 4" stroke="url(#deepBlueGrad)" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
+          <!-- Security -->
+          <div class="feature-item">
+            <div class="feature-icon-col">
+              <div class="icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#deepBlueGrad)" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="feature-text-col">
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Security</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                Reviewed and updated by a standard committee.
+              </p>
             </div>
           </div>
-          <div class="feature-text-col">
-            <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Historic performance</h4>
-            <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
-              Long-term average returns around ~10% per year.
-            </p>
+
+          <!-- Performance -->
+          <div class="feature-item">
+            <div class="feature-icon-col">
+              <div class="icon-box">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M6 20L6 16M12 20L12 10M18 20L18 4" stroke="url(#deepBlueGrad)" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="feature-text-col">
+              <h4 style="margin: 0 0 8px; font-size: 16px; font-weight: 700;">Historic performance</h4>
+              <p style="margin: 0; font-size: 15px; color: var(--text-muted); line-height: 1.5;">
+                Long-term average returns around ~10% per year.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TRADE YOUR WAY -->
+      <!-- TRADE YOUR WAY -->
+      <section class="section anchor reveal" id="your-way">
+        <h2>Trade your way</h2>
+        <p class="muted">Choose the instrument that matches your goals.</p>
+
+        <!-- Swipe Affordance -->
+        <div class="swipe-hint">Swipe to see more options &rarr;</div>
+
+        <div class="h-scroll">
+          <div class="h-card">
+            <div class="spotlight-overlay"></div>
+            <h4>Index CFDs</h4>
+            <p class="muted">Trade the daily price movements of the S&P 500 without owning assets.</p>
+          </div>
+          <div class="h-card">
+            <div class="spotlight-overlay"></div>
+            <h4>Options CFDs</h4>
+            <p class="muted">Speculate on reaching a certain price by a certain date (Advanced).</p>
+          </div>
+          <div class="h-card">
+            <div class="spotlight-overlay"></div>
+            <h4>ETF CFDs</h4>
+            <p class="muted">Trade CFDs on popular funds like SPY that track the Index directly.</p>
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      <!-- FIRST TRADE -->
+      <section class="section anchor reveal" id="first-trade">
+        <h2>How to open your first trade</h2>
 
-    <!-- TRADE YOUR WAY -->
-    <!-- TRADE YOUR WAY -->
-    <section class="section anchor reveal" id="your-way">
-      <h2>Trade your way</h2>
-      <p class="muted">Choose the instrument that matches your goals.</p>
+        <div class="step-container" style="margin-top: 32px;">
 
-      <!-- Swipe Affordance -->
-      <div class="swipe-hint">Swipe to see more options &rarr;</div>
-
-      <div class="h-scroll">
-        <div class="h-card">
-          <div class="spotlight-overlay"></div>
-          <h4>Index CFDs</h4>
-          <p class="muted">Trade the daily price movements of the S&P 500 without owning assets.</p>
-        </div>
-        <div class="h-card">
-          <div class="spotlight-overlay"></div>
-          <h4>Options CFDs</h4>
-          <p class="muted">Speculate on reaching a certain price by a certain date (Advanced).</p>
-        </div>
-        <div class="h-card">
-          <div class="spotlight-overlay"></div>
-          <h4>ETF CFDs</h4>
-          <p class="muted">Trade CFDs on popular funds like SPY that track the Index directly.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIRST TRADE -->
-    <section class="section anchor reveal" id="first-trade">
-      <h2>How to open your first trade</h2>
-
-      <div class="step-container" style="margin-top: 32px;">
-
-        <!-- Step 1 -->
-        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
-          <div class="step-num" style="
+          <!-- Step 1 -->
+          <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+            <div class="step-num" style="
             background: var(--tint); 
             color: var(--text-muted); 
             width: 26px; 
@@ -1600,14 +1606,14 @@
             flex-shrink: 0;
             margin-top: 2px;
           ">1</div>
-          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Type <strong>S&P 500</strong> into the
-            search
-            bar.</div>
-        </div>
+            <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Type <strong>S&P 500</strong> into the
+              search
+              bar.</div>
+          </div>
 
-        <!-- Step 2 -->
-        <div class="step-row" style="margin-bottom: 24px; align-items: start;">
-          <div class="step-num" style="
+          <!-- Step 2 -->
+          <div class="step-row" style="margin-bottom: 24px; align-items: start;">
+            <div class="step-num" style="
             background: var(--tint); 
             color: var(--text-muted); 
             width: 26px; 
@@ -1621,13 +1627,13 @@
             flex-shrink: 0;
             margin-top: 2px;
           ">2</div>
-          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Analyse charts to understand market
-            sentiment.</div>
-        </div>
+            <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Analyse charts to understand market
+              sentiment.</div>
+          </div>
 
-        <!-- Step 3: Editorial Emphasis via Typography & Spacing -->
-        <div class="step-row" style="margin-bottom: 24px; align-items: start;">
-          <div class="step-num" style="
+          <!-- Step 3: Editorial Emphasis via Typography & Spacing -->
+          <div class="step-row" style="margin-bottom: 24px; align-items: start;">
+            <div class="step-num" style="
             background: var(--tint); 
             color: #374151; /* Slightly darker */
             width: 26px; 
@@ -1641,14 +1647,14 @@
             flex-shrink: 0;
             margin-top: 2px;
           ">3</div>
-          <div class="step-txt" style="font-size: 18px; line-height: 1.6; color: var(--text);">Select
-            <strong>Buy</strong> or <strong>Sell</strong>.
+            <div class="step-txt" style="font-size: 18px; line-height: 1.6; color: var(--text);">Select
+              <strong>Buy</strong> or <strong>Sell</strong>.
+            </div>
           </div>
-        </div>
 
-        <!-- Step 4 -->
-        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
-          <div class="step-num" style="
+          <!-- Step 4 -->
+          <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+            <div class="step-num" style="
             background: var(--tint); 
             color: var(--text-muted); 
             width: 26px; 
@@ -1662,13 +1668,13 @@
             flex-shrink: 0;
             margin-top: 2px;
           ">4</div>
-          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Set <strong>Stop Loss</strong> to manage
-            risk.</div>
-        </div>
+            <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Set <strong>Stop Loss</strong> to manage
+              risk.</div>
+          </div>
 
-        <!-- Step 5 -->
-        <div class="step-row" style="margin-bottom: 20px; align-items: start;">
-          <div class="step-num" style="
+          <!-- Step 5 -->
+          <div class="step-row" style="margin-bottom: 20px; align-items: start;">
+            <div class="step-num" style="
             background: var(--tint); 
             color: var(--text-muted); 
             width: 26px; 
@@ -1682,14 +1688,14 @@
             flex-shrink: 0;
             margin-top: 2px;
           ">5</div>
-          <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Visualise your trade size and confirm.
+            <div class="step-txt" style="font-size: 17px; line-height: 1.6;">Visualise your trade size and confirm.
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Anchor CTA -->
-      <div style="margin-top: 24px; text-align: left; padding-left: 52px;">
-        <a href="#top" style="
+        <!-- Anchor CTA -->
+        <div style="margin-top: 24px; text-align: left; padding-left: 52px;">
+          <a href="#top" style="
           color: var(--text-muted); 
           text-decoration: none; 
           font-weight: 500; 
@@ -1697,14 +1703,14 @@
           border-bottom: 1px solid var(--line); 
           padding-bottom: 2px;
         ">Practise on demo &rarr;</a>
-      </div>
-    </section>
+        </div>
+      </section>
 
-    <!-- GET STARTED -->
-    <!-- GET STARTED -->
-    <section class="section anchor reveal" id="get-started">
-      <div class="conversion" style="text-align:center; padding: 40px 24px;">
-        <h3 style="
+      <!-- GET STARTED -->
+      <!-- GET STARTED -->
+      <section class="section anchor reveal" id="get-started">
+        <div class="conversion" style="text-align:center; padding: 40px 24px;">
+          <h3 style="
           font-size: 32px; 
           font-weight: 800; 
           margin-bottom: 16px; 
@@ -1712,7 +1718,7 @@
           color: var(--text);
         ">Begin your journey</h3>
 
-        <p class="muted" style="
+          <p class="muted" style="
           margin-bottom: 32px; 
           font-size: 16px; 
           line-height: 1.5; 
@@ -1722,129 +1728,29 @@
           margin-right: auto;
         ">Join millions of users worldwide trading with confidence.</p>
 
-        <!-- Simplified Actions -->
-        <div>
-          <a class="btn btn-primary" href="#top" style="width:100%; max-width:280px; font-weight: 600;">Create
-            Account</a>
-        </div>
-        <div style="margin-top: 16px;">
-          <a href="#top" style="
+          <!-- Simplified Actions -->
+          <div>
+            <a class="btn btn-primary" href="#top" style="width:100%; max-width:280px; font-weight: 600;">Create
+              Account</a>
+          </div>
+          <div style="margin-top: 16px;">
+            <a href="#top" style="
             color: var(--text-muted); 
             font-size: 13px; 
             text-decoration: none; 
             opacity: 0.8;
             font-weight: 500;
           ">Continue as Guest</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOURS: Compact Reference Accordion -->
-    <details id="hours" class="reveal">
-      <summary>
-        <div class="acc-header">
-          <span class="acc-title">Trading hours</span>
-          <span class="acc-hint">Sun night &rarr; Fri night</span>
-        </div>
-        <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </summary>
-      <div class="acc-content">
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span style="font-weight:500; color:var(--text); font-size:14px;">Availability</span>
-          <span style="color:var(--text-muted); text-align:right; font-size:14px;">Sunday night &rarr; Friday
-            night</span>
-        </div>
-        <div style="display:flex; justify-content:space-between;">
-          <span style="font-weight:500; color:var(--text); font-size:14px;">Holidays</span>
-          <span style="color:var(--text-muted); text-align:right; font-size:14px;">Hours may vary. Check live
-            schedule.</span>
-        </div>
-      </div>
-    </details>
-
-    <!-- PLUSES -->
-    <section class="section anchor reveal" id="pluses">
-      <h2>The Pluses with us</h2>
-
-      <div class="pluses-grid">
-        <div class="check-row">
-          <div class="check-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
           </div>
-          <span>Fast execution</span>
         </div>
-        <div class="check-row">
-          <div class="check-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </div>
-          <span>Tight spreads</span>
-        </div>
-        <div class="check-row">
-          <div class="check-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </div>
-          <span>Advanced tools</span>
-        </div>
-        <div class="check-row">
-          <div class="check-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-              stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-          </div>
-          <span>Secure withdrawals</span>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- TAKEAWAYS -->
-    <!-- TAKEAWAYS -->
-    <section class="section anchor reveal" id="takeaways">
-      <h2>Key takeaways</h2>
-      <div class="card-box takeaways" style="background:var(--card); border:1px solid var(--line);">
-        <div class="t-row">
-          <span class="t-label" style="font-weight:700;">What</span>
-          <span class="t-val">Tracks top 500 U.S. companies.</span>
-        </div>
-        <div class="t-row">
-          <span class="t-label" style="font-weight:700;">Why</span>
-          <span class="t-val">Broad exposure spreads risk.</span>
-        </div>
-        <div class="t-row">
-          <span class="t-label" style="font-weight:700;">Returns</span>
-          <span class="t-val">Historically ~10% / year avg.</span>
-        </div>
-        <div class="t-row">
-          <span class="t-label" style="font-weight:700;">Method</span>
-          <span class="t-val">Index, Options, or ETFs.</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section anchor reveal" id="faq">
-      <h2 style="margin-bottom: 24px;">Common questions</h2>
-
-      <details>
+      <!-- HOURS: Compact Reference Accordion -->
+      <details id="hours" class="reveal">
         <summary>
           <div class="acc-header">
-            <span class="acc-title">What is the minimum deposit?</span>
+            <span class="acc-title">Trading hours</span>
+            <span class="acc-hint">Sun night &rarr; Fri night</span>
           </div>
           <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round">
@@ -1852,251 +1758,353 @@
           </svg>
         </summary>
         <div class="acc-content">
-          You can start trading with as little as $100. We recommend starting small and scaling up as you gain
-          confidence.
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <div class="acc-header">
-            <span class="acc-title">Is there a demo account?</span>
+          <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+            <span style="font-weight:500; color:var(--text); font-size:14px;">Availability</span>
+            <span style="color:var(--text-muted); text-align:right; font-size:14px;">Sunday night &rarr; Friday
+              night</span>
           </div>
-          <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="acc-content">
-          Yes! You get a free, unlimited demo account with $50,000 in virtual funds to practice risk-free before trading
-          real money.
-        </div>
-      </details>
-
-      <details>
-        <summary>
-          <div class="acc-header">
-            <span class="acc-title">Are my funds safe?</span>
+          <div style="display:flex; justify-content:space-between;">
+            <span style="font-weight:500; color:var(--text); font-size:14px;">Holidays</span>
+            <span style="color:var(--text-muted); text-align:right; font-size:14px;">Hours may vary. Check live
+              schedule.</span>
           </div>
-          <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="acc-content">
-          Your security is our top priority. We use segregated bank accounts and advanced 256-bit SSL encryption to
-          protect your funds and data. Regulared by top-tier authorities.
         </div>
       </details>
-    </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer reveal">
-      <!-- Trust Strip -->
-      <div class="footer-logos">
-        <span class="footer-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-          </svg>
-          Global Reg
-        </span>
-        <span class="footer-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-          SSL Secure
-        </span>
-        <span class="footer-logo">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          Verified
-        </span>
+      <!-- PLUSES -->
+      <section class="section anchor reveal" id="pluses">
+        <h2>The Pluses with us</h2>
+
+        <div class="pluses-grid">
+          <div class="check-row">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <span>Fast execution</span>
+          </div>
+          <div class="check-row">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <span>Tight spreads</span>
+          </div>
+          <div class="check-row">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <span>Advanced tools</span>
+          </div>
+          <div class="check-row">
+            <div class="check-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </div>
+            <span>Secure withdrawals</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAKEAWAYS -->
+      <!-- TAKEAWAYS -->
+      <section class="section anchor reveal" id="takeaways">
+        <h2>Key takeaways</h2>
+        <div class="card-box takeaways" style="background:var(--card); border:1px solid var(--line);">
+          <div class="t-row">
+            <span class="t-label" style="font-weight:700;">What</span>
+            <span class="t-val">Tracks top 500 U.S. companies.</span>
+          </div>
+          <div class="t-row">
+            <span class="t-label" style="font-weight:700;">Why</span>
+            <span class="t-val">Broad exposure spreads risk.</span>
+          </div>
+          <div class="t-row">
+            <span class="t-label" style="font-weight:700;">Returns</span>
+            <span class="t-val">Historically ~10% / year avg.</span>
+          </div>
+          <div class="t-row">
+            <span class="t-label" style="font-weight:700;">Method</span>
+            <span class="t-val">Index, Options, or ETFs.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section anchor reveal" id="faq">
+        <h2 style="margin-bottom: 24px;">Common questions</h2>
+
+        <details>
+          <summary>
+            <div class="acc-header">
+              <span class="acc-title">What is the minimum deposit?</span>
+            </div>
+            <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <div class="acc-content">
+            You can start trading with as little as $100. We recommend starting small and scaling up as you gain
+            confidence.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <div class="acc-header">
+              <span class="acc-title">Is there a demo account?</span>
+            </div>
+            <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <div class="acc-content">
+            Yes! You get a free, unlimited demo account with $50,000 in virtual funds to practice risk-free before
+            trading
+            real money.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <div class="acc-header">
+              <span class="acc-title">Are my funds safe?</span>
+            </div>
+            <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </summary>
+          <div class="acc-content">
+            Your security is our top priority. We use segregated bank accounts and advanced 256-bit SSL encryption to
+            protect your funds and data. Regulared by top-tier authorities.
+          </div>
+        </details>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer reveal">
+        <!-- Trust Strip -->
+        <div class="footer-logos">
+          <span class="footer-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+            </svg>
+            Global Reg
+          </span>
+          <span class="footer-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            SSL Secure
+          </span>
+          <span class="footer-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Verified
+          </span>
+        </div>
+
+        <p class="risk-warning">
+          <strong>Risk Warning:</strong> Trading CFDs involves significant risk and can result in the loss of your
+          capital. It may not be suitable for all investors. Please consider our Risk Disclosure Statement before
+          trading.
+          Past performance is not indicative of future results.
+        </p>
+
+        <div class="copyright">
+          &copy; 2026 S&P 500 Trading Guide. All rights reserved.
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+      <div class="sticky-inner">
+        <a class="btn btn-primary" href="#get-started">Try free demo</a>
       </div>
-
-      <p class="risk-warning">
-        <strong>Risk Warning:</strong> Trading CFDs involves significant risk and can result in the loss of your
-        capital. It may not be suitable for all investors. Please consider our Risk Disclosure Statement before trading.
-        Past performance is not indicative of future results.
-      </p>
-
-      <div class="copyright">
-        &copy; 2026 S&P 500 Trading Guide. All rights reserved.
-      </div>
-    </footer>
-
-  </main>
-
-  <!-- Sticky CTA -->
-  <div class="sticky-cta">
-    <div class="sticky-inner">
-      <a class="btn btn-primary" href="#get-started">Try free demo</a>
     </div>
-  </div>
 
-  <script>
-    // 1. Dark Mode Toggle
-    const toggle = document.getElementById('themeToggle');
-    const sun = toggle.querySelector('.sun');
-    const moon = toggle.querySelector('.moon');
-    const root = document.documentElement;
+    <script>
+      // 1. Dark Mode Toggle
+      const toggle = document.getElementById('themeToggle');
+      const sun = toggle.querySelector('.sun');
+      const moon = toggle.querySelector('.moon');
+      const root = document.documentElement;
 
-    const setMode = (isDark) => {
-      if (isDark) {
-        root.setAttribute('data-theme', 'dark');
-        sun.style.display = 'block';
-        moon.style.display = 'none';
-      } else {
-        root.removeAttribute('data-theme');
-        sun.style.display = 'none';
-        moon.style.display = 'block';
-      }
-    };
-
-    // Check system preference
-    const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setMode(sysDark);
-
-    toggle.addEventListener('click', () => {
-      const isDark = root.getAttribute('data-theme') === 'dark';
-      setMode(!isDark);
-    });
-
-    // 2. Scroll Progress
-    const bar = document.getElementById('progressBar');
-    window.addEventListener('scroll', () => {
-      const sc = document.documentElement.scrollTop || document.body.scrollTop;
-      const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const p = h > 0 ? (sc / h) * 100 : 0;
-      bar.style.width = p + '%';
-    }, { passive: true });
-
-    // 3. Reveal Animations (IntersectionObserver)
-    const reveals = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('active');
-          // Optional: stop observing once revealed
-          // obs.unobserve(e.target); 
+      const setMode = (isDark) => {
+        if (isDark) {
+          root.setAttribute('data-theme', 'dark');
+          sun.style.display = 'block';
+          moon.style.display = 'none';
+        } else {
+          root.removeAttribute('data-theme');
+          sun.style.display = 'none';
+          moon.style.display = 'block';
         }
-      });
-    }, { threshold: 0.1 });
+      };
 
-    reveals.forEach(r => obs.observe(r));
+      // Check system preference
+      const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setMode(sysDark);
 
-    // 4. TOC Scroll Spy with Vertical Rail
-    const tocLinks = document.querySelectorAll('a[data-toc]');
-    const targets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href')));
-    const railMarker = document.getElementById('toc-rail-active');
-    const tocList = document.getElementById('tocList');
-
-    // Add Rail Marker to DOM if missing
-    if (!railMarker && tocList) {
-      const marker = document.createElement('div');
-      marker.id = 'toc-rail-active';
-      tocList.appendChild(marker);
-    }
-    const activeRail = document.getElementById('toc-rail-active');
-
-    const updateRail = (link) => {
-      if (!activeRail || window.innerWidth < 1024) return;
-
-      const listRect = tocList.getBoundingClientRect();
-      const linkRect = link.getBoundingClientRect();
-
-      const top = linkRect.top - listRect.top;
-      const height = linkRect.height;
-
-      activeRail.style.opacity = '1';
-      activeRail.style.top = top + 'px';
-      activeRail.style.height = height + 'px';
-    };
-
-    const spy = new IntersectionObserver((entries) => {
-      // Logic: Find the highest intersecting element
-      const visible = entries.filter(e => e.isIntersecting);
-      if (!visible.length) return;
-
-      visible.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
-      const id = visible[0].target.id;
-
-      let activeLink = null;
-      tocLinks.forEach(l => {
-        const isActive = l.getAttribute('href') === '#' + id;
-        l.classList.toggle('is-active', isActive);
-        if (isActive) activeLink = l;
+      toggle.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        setMode(!isDark);
       });
 
-      if (activeLink) updateRail(activeLink);
+      // 2. Scroll Progress
+      const bar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const sc = document.documentElement.scrollTop || document.body.scrollTop;
+        const h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const p = h > 0 ? (sc / h) * 100 : 0;
+        bar.style.width = p + '%';
+      }, { passive: true });
 
-    }, { rootMargin: "-20% 0px -60% 0px" });
+      // 3. Reveal Animations (IntersectionObserver)
+      const reveals = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('active');
+            // Optional: stop observing once revealed
+            // obs.unobserve(e.target); 
+          }
+        });
+      }, { threshold: 0.1 });
 
-    targets.forEach(t => {
-      if (t) spy.observe(t);
-    });
+      reveals.forEach(r => obs.observe(r));
 
-    // Handle Desktop/Mobile Sidebar Logic
-    const tocEl = document.getElementById('toc');
-    const checkDesktop = () => {
-      if (window.innerWidth >= 1024) {
-        if (!tocEl.hasAttribute('open')) tocEl.setAttribute('open', '');
+      // 4. TOC Scroll Spy with Vertical Rail
+      const tocLinks = document.querySelectorAll('a[data-toc]');
+      const targets = Array.from(tocLinks).map(a => document.querySelector(a.getAttribute('href')));
+      const railMarker = document.getElementById('toc-rail-active');
+      const tocList = document.getElementById('tocList');
+
+      // Add Rail Marker to DOM if missing
+      if (!railMarker && tocList) {
+        const marker = document.createElement('div');
+        marker.id = 'toc-rail-active';
+        tocList.appendChild(marker);
       }
-    };
-    window.addEventListener('resize', checkDesktop);
-    checkDesktop(); // Run on load
+      const activeRail = document.getElementById('toc-rail-active');
 
-    // Close TOC on mobile click ONLY
-    tocLinks.forEach(l => l.addEventListener('click', () => {
-      if (window.innerWidth < 1024) {
-        tocEl.removeAttribute('open');
-      }
-    }));
+      const updateRail = (link) => {
+        if (!activeRail || window.innerWidth < 1024) return;
 
-    // 5. Live Ticker Simulation
-    const priceEl = document.getElementById('tickerPrice');
-    const changeEl = document.getElementById('tickerChange');
-    let basePrice = 4780.25;
+        const listRect = tocList.getBoundingClientRect();
+        const linkRect = link.getBoundingClientRect();
 
-    setInterval(() => {
-      // Simulate small random moves
-      const delta = (Math.random() - 0.45) * 1.5;
-      basePrice += delta;
+        const top = linkRect.top - listRect.top;
+        const height = linkRect.height;
 
-      priceEl.textContent = basePrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        activeRail.style.opacity = '1';
+        activeRail.style.top = top + 'px';
+        activeRail.style.height = height + 'px';
+      };
 
-      // Update color based on move
-      if (delta > 0) {
-        changeEl.className = 'ticker-change up';
-        changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg> 0.4%`;
-      } else {
-        changeEl.className = 'ticker-change down';
-        changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg> 0.2%`;
-      }
-    }, 2500);
+      const spy = new IntersectionObserver((entries) => {
+        // Logic: Find the highest intersecting element
+        const visible = entries.filter(e => e.isIntersecting);
+        if (!visible.length) return;
 
-    // 6. Spotlight Effect
-    const cards = document.querySelectorAll('.h-card, .card-box, .conversion');
-    cards.forEach(card => {
-      // Add overlay if missing (for non-hardcoded cards)
-      if (!card.querySelector('.spotlight-overlay')) {
-        const overlay = document.createElement('div');
-        overlay.classList.add('spotlight-overlay');
-        card.appendChild(overlay);
-      }
+        visible.sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top));
+        const id = visible[0].target.id;
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', x + 'px');
-        card.style.setProperty('--y', y + 'px');
+        let activeLink = null;
+        tocLinks.forEach(l => {
+          const isActive = l.getAttribute('href') === '#' + id;
+          l.classList.toggle('is-active', isActive);
+          if (isActive) activeLink = l;
+        });
+
+        if (activeLink) updateRail(activeLink);
+
+      }, { rootMargin: "-20% 0px -60% 0px" });
+
+      targets.forEach(t => {
+        if (t) spy.observe(t);
       });
-    });
-  </script>
+
+      // Handle Desktop/Mobile Sidebar Logic
+      const tocEl = document.getElementById('toc');
+      const checkDesktop = () => {
+        if (window.innerWidth >= 1024) {
+          if (!tocEl.hasAttribute('open')) tocEl.setAttribute('open', '');
+        }
+      };
+      window.addEventListener('resize', checkDesktop);
+      checkDesktop(); // Run on load
+
+      // Close TOC on mobile click ONLY
+      tocLinks.forEach(l => l.addEventListener('click', () => {
+        if (window.innerWidth < 1024) {
+          tocEl.removeAttribute('open');
+        }
+      }));
+
+      // 5. Live Ticker Simulation
+      const priceEl = document.getElementById('tickerPrice');
+      const changeEl = document.getElementById('tickerChange');
+      let basePrice = 4780.25;
+
+      setInterval(() => {
+        // Simulate small random moves
+        const delta = (Math.random() - 0.45) * 1.5;
+        basePrice += delta;
+
+        priceEl.textContent = basePrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+        // Update color based on move
+        if (delta > 0) {
+          changeEl.className = 'ticker-change up';
+          changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg> 0.4%`;
+        } else {
+          changeEl.className = 'ticker-change down';
+          changeEl.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg> 0.2%`;
+        }
+      }, 2500);
+
+      // 6. Spotlight Effect
+      const cards = document.querySelectorAll('.h-card, .card-box, .conversion');
+      cards.forEach(card => {
+        // Add overlay if missing (for non-hardcoded cards)
+        if (!card.querySelector('.spotlight-overlay')) {
+          const overlay = document.createElement('div');
+          overlay.classList.add('spotlight-overlay');
+          card.appendChild(overlay);
+        }
+
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          card.style.setProperty('--x', x + 'px');
+          card.style.setProperty('--y', y + 'px');
+        });
+      });
+    </script>
 </body>
 
 </html>
