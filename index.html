@@ -860,6 +860,13 @@
     }
 
     /* --- DESKTOP RESPONSIVE STYLES --- */
+    /* Mobile/Default for Trading Hours Accordion (Side Spacing) */
+    details#hours {
+      margin-left: var(--pad);
+      margin-right: var(--pad);
+      margin-top: 40px;
+    }
+
     @media (min-width: 1024px) {
       .page {
         max-width: 1100px;
@@ -1017,10 +1024,13 @@
       details#hours {
         grid-column: 2;
         margin-top: 40px;
-        /* Requested margin */
+        margin-left: 0;
+        margin-right: 0;
         padding: 0;
         border-color: var(--line);
       }
+
+
 
       /* Feature Strip - Mobile Override */
       @media (max-width: 768px) {
