@@ -236,6 +236,53 @@
       border: 1px solid var(--line);
     }
 
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+      margin: 16px 0;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      background: #3B82F6;
+      cursor: pointer;
+      margin-top: -10px;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      border: 2px solid #fff;
+    }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 4px;
+      cursor: pointer;
+      background: var(--line);
+      border-radius: 2px;
+    }
+
+    .calc-box {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .calc-result {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3B82F6 0%, #0C2780 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 16px 0 8px;
+    }
+
     /* --- UTILITIES --- */
     .bg-subtle {
       background: var(--tint);
@@ -1546,6 +1593,45 @@
       </div>
     </section>
 
+    <!-- ROI CALCULATOR -->
+    <section class="section anchor reveal" id="calculator">
+      <h2>See the potential</h2>
+      <p class="muted" style="margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">
+        Historically, the S&P 500 has returned ~10% annually. See how your investment could grow over time.
+      </p>
+
+      <div class="calc-box">
+        <!-- Input: Amount -->
+        <div style="margin-bottom: 24px; text-align: left;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:14px; margin-bottom:8px;">
+            <label for="invAmount">Initial Investment</label>
+            <span id="amountDisplay">$5,000</span>
+          </div>
+          <input type="range" id="invAmount" min="1000" max="50000" step="1000" value="5000">
+        </div>
+
+        <!-- Input: Years -->
+        <div style="margin-bottom: 32px; text-align: left;">
+          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:14px; margin-bottom:8px;">
+            <label for="invYears">Duration</label>
+            <span id="yearsDisplay">10 Years</span>
+          </div>
+          <input type="range" id="invYears" min="1" max="40" step="1" value="10">
+        </div>
+
+        <!-- Result -->
+        <div style="border-top: 1px solid var(--line); padding-top: 24px;">
+          <span
+            style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Potential
+            Value</span>
+          <div class="calc-result" id="calcResult">$12,968</div>
+          <p style="font-size: 12px; color: var(--text-muted); opacity: 0.7; margin-top: 8px;">
+            *Based on hypothetical 10% annual compounding. Not investment advice.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- TRADE YOUR WAY -->
     <!-- TRADE YOUR WAY -->
     <section class="section anchor reveal" id="your-way">
@@ -2094,6 +2180,33 @@
         card.style.setProperty('--y', y + 'px');
       });
     });
+
+    // 7. ROI Calculator Logic
+    const amountInput = document.getElementById('invAmount');
+    const yearsInput = document.getElementById('invYears');
+    const amountDisp = document.getElementById('amountDisplay');
+    const yearsDisp = document.getElementById('yearsDisplay');
+    const resultDisp = document.getElementById('calcResult');
+
+    function updateCalc() {
+      const P = parseFloat(amountInput.value);
+      const t = parseFloat(yearsInput.value); // years
+      const r = 0.10; // 10% rate
+      const n = 1; // compounded annually
+
+      // Formula: A = P(1 + r/n)^(nt)
+      const A = P * Math.pow((1 + r / n), (n * t));
+
+      amountDisp.textContent = '$' + P.toLocaleString();
+      yearsDisp.textContent = t + ' Year' + (t !== 1 ? 's' : '');
+      resultDisp.textContent = '$' + Math.floor(A).toLocaleString();
+    }
+
+    if (amountInput && yearsInput) {
+      amountInput.addEventListener('input', updateCalc);
+      yearsInput.addEventListener('input', updateCalc);
+      updateCalc(); // init
+    }
   </script>
 </body>
 
