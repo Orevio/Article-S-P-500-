@@ -268,10 +268,13 @@
       border: 1px solid var(--line);
       border-radius: 24px;
       padding: 32px;
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 640px;
+      /* Fixed width from specs */
+      margin-top: 40px;
+      /* Gap from title */
+      box-shadow: 0 8px 24px rgba(15, 35, 95, 0.08);
+      /* Updated Shadow */
     }
 
     .calc-result {
@@ -281,6 +284,43 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin: 16px 0 8px;
+      text-align: center;
+    }
+
+    .calc-row {
+      margin-bottom: 32px;
+      /* Slider -> Next Label */
+    }
+
+    .calc-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      /* Label -> Slider */
+    }
+
+    .calc-label {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .calc-val {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: var(--text);
+      font-feature-settings: "tnum" on, "lnum" on;
+    }
+
+    .calc-divider {
+      height: 1px;
+      background: #E6EBF5;
+      margin: 32px 0;
+      /* Divider spacing */
+      border: none;
     }
 
     /* --- UTILITIES --- */
@@ -1594,40 +1634,60 @@
     </section>
 
     <!-- ROI CALCULATOR -->
-    <section class="section anchor reveal" id="calculator">
-      <h2>See the potential</h2>
-      <p class="muted" style="margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">
-        Historically, the S&P 500 has returned ~10% annually. See how your investment could grow over time.
-      </p>
+    <!-- ROI CALCULATOR (Alignment Fix) -->
+    <section class="section anchor reveal" id="calculator" style="
+      max-width: 1200px; 
+      padding-left: 96px; 
+      padding-right: var(--pad); 
+      margin: 0 auto; 
+      text-align: left;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--line);
+    ">
+      <div style="max-width: 640px;">
+        <h2>See the potential</h2>
+        <p class="muted" style="margin-bottom: 0;">
+          Historically, the S&P 500 has returned ~10% annually. See how your investment could grow over time.
+        </p>
 
-      <div class="calc-box">
-        <!-- Input: Amount -->
-        <div style="margin-bottom: 24px; text-align: left;">
-          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:14px; margin-bottom:8px;">
-            <label for="invAmount">Initial Investment</label>
-            <span id="amountDisplay">$5,000</span>
+        <div class="calc-box">
+          <!-- Input: Amount -->
+          <div class="calc-row">
+            <div class="calc-label-row">
+              <label for="invAmount" class="calc-label">Initial Investment</label>
+              <span id="amountDisplay" class="calc-val">$5,000</span>
+            </div>
+            <input type="range" id="invAmount" min="1000" max="50000" step="1000" value="5000" style="margin: 0;">
           </div>
-          <input type="range" id="invAmount" min="1000" max="50000" step="1000" value="5000">
-        </div>
 
-        <!-- Input: Years -->
-        <div style="margin-bottom: 32px; text-align: left;">
-          <div style="display:flex; justify-content:space-between; font-weight:600; font-size:14px; margin-bottom:8px;">
-            <label for="invYears">Duration</label>
-            <span id="yearsDisplay">10 Years</span>
+          <!-- Input: Years -->
+          <div class="calc-row" style="margin-bottom: 0;">
+            <div class="calc-label-row">
+              <label for="invYears" class="calc-label">Duration</label>
+              <span id="yearsDisplay" class="calc-val">10 Years</span>
+            </div>
+            <input type="range" id="invYears" min="1" max="40" step="1" value="10" style="margin: 0;">
           </div>
-          <input type="range" id="invYears" min="1" max="40" step="1" value="10">
-        </div>
 
-        <!-- Result -->
-        <div style="border-top: 1px solid var(--line); padding-top: 24px;">
-          <span
-            style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Potential
-            Value</span>
-          <div class="calc-result" id="calcResult">$12,968</div>
-          <p style="font-size: 12px; color: var(--text-muted); opacity: 0.7; margin-top: 8px;">
-            *Based on hypothetical 10% annual compounding. Not investment advice.
-          </p>
+          <!-- Divider -->
+          <hr class="calc-divider">
+
+          <!-- Result -->
+          <div style="
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            max-width: 320px; 
+            margin: 0 auto;
+          ">
+            <span
+              style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Potential
+              Value</span>
+            <div class="calc-result" id="calcResult">$12,968</div>
+            <p style="font-size: 12px; color: var(--text-muted); opacity: 0.7; margin-top: 8px; text-align: center;">
+              *Based on hypothetical 10% annual compounding. Not investment advice.
+            </p>
+          </div>
         </div>
       </div>
     </section>
