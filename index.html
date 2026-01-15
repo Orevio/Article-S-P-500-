@@ -241,6 +241,79 @@
       border: 1px solid var(--line);
     }
 
+    /* --- FAQ SPECIFIC STYLES (Figma) --- */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .faq-list details {
+      /* Reset bubble styles */
+      background: var(--card);
+      border: none !important;
+      border-radius: 0 !important;
+      margin-bottom: 0 !important;
+      border-bottom: 1px solid var(--line) !important;
+      transition: background-color 0.2s ease-out;
+    }
+
+    .faq-list details:last-child {
+      border-bottom: none !important;
+    }
+
+    .faq-list details[open] {
+      background: var(--tint);
+      /* #F6F9FF equivalent */
+    }
+
+    .faq-list summary {
+      padding: 18px 24px !important;
+      min-height: auto;
+      border-radius: 0 !important;
+      border-bottom: none !important;
+    }
+
+    .faq-list details[open] summary {
+      border-bottom: none !important;
+      background: transparent !important;
+    }
+
+    .faq-list .acc-header {
+      width: 100%;
+    }
+
+    .faq-list .acc-title {
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .faq-list .acc-content {
+      padding: 12px 24px 16px 24px !important;
+      background: transparent !important;
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: 400;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .faq-trust {
+      display: flex;
+      gap: 8px;
+      padding-top: 16px;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .faq-trust svg {
+      opacity: 0.6;
+    }
+
     input[type=range] {
       -webkit-appearance: none;
       width: 100%;
@@ -1905,56 +1978,85 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section anchor reveal" id="faq">
-      <h2 style="margin-bottom: 24px;">Common questions</h2>
+    <section class="section anchor reveal" id="faq" style="padding-top: 0; padding-bottom: 0;">
+      <!-- Max Width Wrapper -->
+      <div style="max-width: 680px; margin: 0 auto; padding: 40px 0;">
 
-      <details>
-        <summary>
-          <div class="acc-header">
-            <span class="acc-title">What is the minimum deposit?</span>
-          </div>
-          <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="acc-content">
-          You can start trading with as little as $100. We recommend starting small and scaling up as you gain
-          confidence.
+        <!-- Header -->
+        <div style="margin-bottom: 32px;">
+          <h2 style="
+            font-size: 24px; 
+            line-height: 32px; 
+            font-weight: 600; 
+            color: var(--text); 
+            margin: 0 0 8px 0;
+          ">Common questions</h2>
+          <!-- Optional Subtitle -->
+          <!-- <p style="font-size:14px; color:var(--text-muted); margin:0;">Everything you need to know.</p> -->
         </div>
-      </details>
 
-      <details>
-        <summary>
-          <div class="acc-header">
-            <span class="acc-title">Is there a demo account?</span>
-          </div>
-          <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="acc-content">
-          Yes! You get a free, unlimited demo account with $50,000 in virtual funds to practice risk-free before trading
-          real money.
-        </div>
-      </details>
+        <!-- List Wrapper -->
+        <div class="faq-list">
+          <details>
+            <summary>
+              <div class="acc-header">
+                <span class="acc-title">What is the minimum deposit?</span>
+              </div>
+              <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="acc-content">
+              You can start trading with as little as $100. We recommend starting small and scaling up as you gain
+              confidence.
+            </div>
+          </details>
 
-      <details>
-        <summary>
-          <div class="acc-header">
-            <span class="acc-title">Are my funds safe?</span>
-          </div>
-          <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="acc-content">
-          Your security is our top priority. We use segregated bank accounts and advanced 256-bit SSL encryption to
-          protect your funds and data. Regulared by top-tier authorities.
+          <details>
+            <summary>
+              <div class="acc-header">
+                <span class="acc-title">Is there a demo account?</span>
+              </div>
+              <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="acc-content">
+              Yes! You get a free, unlimited demo account with $50,000 in virtual funds to practice risk-free before
+              trading
+              real money.
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <div class="acc-header">
+                <span class="acc-title">Can I withdraw anytime?</span>
+              </div>
+              <svg class="chev-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="acc-content">
+              Withdrawals are processed within 24 hours to your original payment method. No hidden fees.
+            </div>
+          </details>
         </div>
-      </details>
+
+        <!-- Trust Note -->
+        <div class="faq-trust">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>100% Secure & Regulated Environment</span>
+        </div>
+
+      </div>
     </section>
 
   </main>
